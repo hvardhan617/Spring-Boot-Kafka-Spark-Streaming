@@ -7,7 +7,7 @@ import java.util.Set;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.streaming.Duration;
+import org.apache.spark.streaming.Durations;
 import org.apache.spark.streaming.api.java.JavaPairInputDStream;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
 import org.apache.spark.streaming.kafka.KafkaUtils;
@@ -26,7 +26,7 @@ public class SpringCloudStreamTestApplication {
 		
 		SparkConf conf = new SparkConf().setAppName("kafka-sandbox").setMaster("local[*]")/*.setJars(new String[] {System.getProperty("user.dir")+ "/target/SpringCloudStreamTest-0.0.1-SNAPSHOT.jar"})*/;
         JavaSparkContext sc = new JavaSparkContext(conf);
-        JavaStreamingContext ssc = new JavaStreamingContext(sc, new Duration(2000));
+        JavaStreamingContext ssc = new JavaStreamingContext(sc, Durations.seconds(2));
 		
 		Map<String, String> kafkaParams = new HashMap<>();
 		kafkaParams.put("metadata.broker.list", "localhost:9092");
